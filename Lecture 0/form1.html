@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form One CS50</title>
+</head>
+<body>
+    <form>
+        <div>
+            <input type="text" name="name" placeholder="Name">
+            <input type="password" name="password" placeholder="Password">
+        </div>
+
+        <div>
+            Favorite color?
+            <input type="radio" name="color" value="red">Red
+            <input type="radio" name="color" value="green">Green
+            <input type="radio" name="color" value="blue">Blue
+            <input type="radio" name="color" value="other">Other
+        </div>
+
+        <input name="counntry" list="countries" placeholder="Country">
+        <datalist id="countries">
+            <option value="Afghanistan"></option>
+            <option value="Albania"></option>
+            <option value="Algeria"></option>
+            <option value="Andorra"></option>
+            <option value="Angola"></option>
+            <option value="Antigua & Deps"></option>
+            <option value="Argentina"></option>
+
+            <option value="Brazil"></option>
+
+            <option value="Mozambique"></option>
+            <option value="United States"></option>
+        </datalist>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
