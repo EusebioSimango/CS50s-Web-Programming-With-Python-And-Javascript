@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks CS50</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.querySelector('button')
+            button.disabled = true
+
+            document.querySelector('#task').onkeyup = () => {
+                if (document.querySelector('#task').value.length > 0) {
+                    button.disabled = false
+                } else {
+                    button.disabled = true
+                }
+            }
+
+            document.querySelector('form').onsubmit = (e) => {
+                e.preventDefault()
+                const task = document.querySelector('#task').value
+                const li = document.createElement('li')
+                li.innerHTML = task
+                document.querySelector('#tasks').appendChild(li)
+                button.disabled = true
+                document.querySelector('#task').value = ''
+            }
+
+        })
+    </script>
+</head>
+<body>
+    <h1>Tasks</h1>
+    <ul id="tasks">
+
+    </ul>
+    <form>
+        <input type="text" name="task" id="task" placeholder="New Task">
+        <button type="submit" >Submit</button>
+    </form>
+</body>
+</html>
