@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addintion - React CS50</title>
+    <script
+        src="../../../../../../../media/eusebio/B408409308405710/Windows.old/Users/Eusebio Simango/Programação/HTML + CSS + JS/React/react@17/react/umd/react.development.js"></script>
+    <script
+        src="../../../../../../../media/eusebio/B408409308405710/Windows.old/Users/Eusebio Simango/Programação/HTML + CSS + JS/React/react@17/react-dom/umd/react-dom.development.js"></script>
+    <script
+        src="../../../../../../../media/eusebio/B408409308405710/Windows.old/Users/Eusebio Simango/Programação/HTML + CSS + JS/React/babel@7/unpkg/babel.js"></script>
+    <style>
+        #app {
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        #problem {
+            font-size: 68px;
+        }
+
+        .incorrect {
+            color: red;
+        }
+
+        #winner {
+            font-size: 72px;
+            color: green;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        function App() {
+
+            const [state, setState] = React.useState({
+                num1: 1,
+                num2: 2,
+                response: "",
+                score: 0,
+                incorrect: false
+            })
+
+            function updateResponse(event) {
+                setState({
+                    ...state,
+                    response: event.target.value
+                })
+            }
+
+            if (state.score === 10){
+                return (
+                    <div id="winner">
+                        You Won!
+                    </div>
+                )
+            }
+
+            function inputKeyPress(event){
+                if (event.key === "Enter") {
+                    const answer = parseInt(state.response)
+                    if (state.num1 + state.num2 === answer){
+                        setState({
+                            ...state,
+                            response: "",
+                            num1: Math.ceil(Math.random() * 10),
+                            num2: Math.ceil(Math.random() * 10),
+                            incorrect: false,
+                            score: state.score + 1
+                        })
+                    } else {
+                        setState({
+                            ...state,
+                            response: "",
+                            incorrect: true,
+                            score: state.score - 1
+                        })
+                    }
+                } 
+            }
+
+            return (
+                <div>
+                   <div className={state.incorrect ? "incorrect" : ""} id="problem">{state.num1} + {state.num2}</div>
+                   <input autoFocus={true} onKeyPress={inputKeyPress} onChange={updateResponse} value={state.response}/>
+                   <div>Score: {state.score}</div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.querySelector('#app'))
+
+    </script>
+</body>
+
+</html>
